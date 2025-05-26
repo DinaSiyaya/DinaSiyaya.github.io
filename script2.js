@@ -25,8 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             {examCountdownElement.textContent = "විභාගය අවසන්!";
             // Optional: Disable further updates if exam is over
             // clearInterval(countdownInterval);
-            return;}
-
+            return
         const days = Math.floor(difference / (1000 * 60 * 60 * 24));
         examCountdownElement.textContent = ${days};
     }
