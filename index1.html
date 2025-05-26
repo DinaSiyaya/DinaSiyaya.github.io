@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>දින සීයේ රජය AL Support</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+</head>
+<body>
+    <div id="login-container" class="container">
+        <div class="background-image"></div>
+        <div class="login-box">
+            <h1>Welcome to දින සීයේ රජය AL Support</h1>
+            <form id="login-form">
+                <input type="text" id="username" placeholder="පරිශීලක නාමය" required>
+                <input type="password" id="password" placeholder="මුරපදය" required>
+                <button type="submit">පිවිසෙන්න</button>
+            </form>
+            <p id="error-message" class="error"></p>
+        </div>
+    </div>
+
+    <div id="home-container" class="container hidden">
+        <div class="background-image blurred"></div>
+        <div class="content-box">
+            <h1 id="countdown-title">විභාගයට තව දින <span id="exam-countdown"></span></h1>
+            <div class="home-buttons">
+                <button onclick="showSection('week-plan')">WEEK PLAN</button>
+                <button onclick="showSection('completed-target')">COMPLETED TARGET</button>
+                <button onclick="showSection('work-hours')">WORK HOURS</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="week-plan-container" class="container hidden">
+        <button class="back-button" onclick="showSection('home')">← Home</button>
+        <h2>WEEK PLAN</h2>
+        <div class="subject-buttons">
+            <button onclick="showWeekPlanSubject('chemistry')">CHEMISTRY</button>
+            <button onclick="showWeekPlanSubject('physics')">PHYSICS</button>
+            <button onclick="showWeekPlanSubject('biology')">BIOLOGY</button>
+            <button onclick="showWeekPlanSubject('cmaths')">C.MATHS</button>
+        </div>
+        <div id="week-plan-chemistry" class="subject-table hidden">
+            <h3>CHEMISTRY - WEEK PLAN</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>REVISION</th>
+                        <th>REVISION EXTRA</th>
+                        <th>PAPER DISCUSSION</th>
+                        <th>Correcting mistakes in PAPER</th>
+                        <th>QUICK/RAPID REVISION</th>
+                    </tr>
+                </thead>
+                <tbody id="week-plan-chemistry-body">
+                    </tbody>
+            </table>
+        </div>
+        <div id="week-plan-physics" class="subject-table hidden">
+            <h3>PHYSICS - WEEK PLAN</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>REVISION</th>
+                        <th>REVISION EXTRA</th>
+                        <th>PAPER DISCUSSION</th>
+                        <th>Correcting mistakes in PAPER</th>
+                        <th>QUICK/RAPID REVISION</th>
+                    </tr>
+                </thead>
+                <tbody id="week-plan-physics-body">
+                    </tbody>
+            </table>
+        </div>
+        <div id="week-plan-biology" class="subject-table hidden">
+            <h3>BIOLOGY - WEEK PLAN</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>REVISION</th>
+                        <th>REVISION EXTRA</th>
+                        <th>PAPER DISCUSSION</th>
+                        <th>Correcting mistakes in PAPER</th>
+                        <th>QUICK/RAPID REVISION</th>
+                    </tr>
+                </thead>
+                <tbody id="week-plan-biology-body">
+                    </tbody>
+            </table>
+        </div>
+        <div id="week-plan-cmaths" class="subject-table hidden">
+            <h3>C.MATHS - WEEK PLAN</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>REVISION</th>
+                        <th>REVISION EXTRA</th>
+                        <th>PAPER DISCUSSION</th>
+                        <th>Correcting mistakes in PAPER</th>
+                        <th>QUICK/RAPID REVISION</th>
+                    </tr>
+                </thead>
+                <tbody id="week-plan-cmaths-body">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="completed-target-container" class="container hidden">
+        <button class="back-button" onclick="showSection('home')">← Home</button>
+        <h2>COMPLETED TARGET</h2>
+        <div class="subject-buttons">
+            <button onclick="showCompletedTargetSubject('chemistry')">CHEMISTRY</button>
+            <button onclick="showCompletedTargetSubject('physics')">PHYSICS</button>
+            <button onclick="showCompletedTargetSubject('biology')">BIOLOGY</button>
+        </div>
+        <div id="completed-target-chemistry" class="subject-table hidden">
+            <h3>CHEMISTRY</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>REVISION VIDEOS</th>
+                        <th>HOMEWORK</th>
+                        <th>PAST PAPERS (LESSON VISE)</th>
+                    </tr>
+                </thead>
+                <tbody id="completed-target-chemistry-body">
+                    </tbody>
+            </table>
+        </div>
+        <div id="completed-target-physics" class="subject-table hidden">
+            <h3>PHYSICS</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>REVISION VIDEOS</th>
+                        <th>HOMEWORK</th>
+                        <th>PAST PAPERS (LESSON VISE විවරණ)</th>
+                    </tr>
+                </thead>
+                <tbody id="completed-target-physics-body">
+                    </tbody>
+            </table>
+        </div>
+        <div id="completed-target-biology" class="subject-table hidden">
+            <h3>BIOLOGY</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>REVISION VIDEOS</th>
+                        <th>HOMEWORK</th>
+                        <th>PAST PAPERS (LESSON VISE)</th>
+                    </tr>
+                </thead>
+                <tbody id="completed-target-biology-body">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="work-hours-container" class="container hidden">
+        <button class="back-button" onclick="showSection('home')">← Home</button>
+        <h2>WORK HOURS</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>MONDAY</th>
+                    <th>TUESDAY</th>
+                    <th>WEDNESDAY</th>
+                    <th>THURSDAY</th>
+                    <th>FRIDAY</th>
+                    <th>SATURDAY</th>
+                    <th>SUNDAY</th>
+                    <th>WEEK TOTAL</th>
+                </tr>
+            </thead>
+            <tbody id="work-hours-body">
+                </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
