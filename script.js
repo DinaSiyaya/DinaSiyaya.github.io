@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const days = Math.floor(difference / (1000 * 60 * 60 * 24));
         examCountdownElement.textContent = ${days};
-    }
 
     // Initial countdown update
     updateCountdown();
