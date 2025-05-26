@@ -15,14 +15,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentLoggedInUser = localStorage.getItem('loggedInUser');
 
     // Function to calculate and display countdown
-    function updateCountdown() 
-    {
-        const examDate = new Date('2025-11-10T00:00:00'); // 2025 November 10
+    function updateCountdown() {
+        // Updated exam date to 2025 November 10 based on current date
+        const examDate = new Date('2025-11-10T00:00:00'); // Ensure correct year and month
         const now = new Date();
         const difference = examDate - now;
 
-        if (difference < 0) {
+        if (difference < 0) 
+        {
             examCountdownElement.textContent = "විභාගය අවසන්!";
+            // Optional: Disable further updates if exam is over
+            // clearInterval(countdownInterval);
             return;
         }
 
@@ -32,8 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial countdown update
     updateCountdown();
-    // Update countdown every second
-    setInterval(updateCountdown, 1000 * 60 * 60 * 24); // Daily refresh
+    // Update countdown every day (once a day)
+    setInterval(updateCountdown, 1000 * 60 * 60 * 24);
 
     // Load user-specific data
     function loadUserData(username) {
@@ -83,9 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Re-render data for the current user when navigating
         if (currentLoggedInUser) {
-            renderWeekPlanTables(currentLoggedInUser);
-            renderCompletedTargetTables(currentLoggedInUser);
-            renderWorkHoursTable(currentLoggedInUser);
+            renderUserSpecificData(currentLoggedInUser); // Call the general render function
         }
     };
 
@@ -140,6 +141,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderWeekPlanTables(username) {
         weekPlanSubjects.forEach(subject => {
             const tbody = document.getElementById(week-plan-${subject}-body);
+            // Ensure tbody exists before trying to clear/append
+            if (!tbody) {
+                console.error(Error: tbody for week-plan-${subject} not found.);
+                return;
+            }
             tbody.innerHTML = ''; // Clear previous content
 
             const userData = loadUserData(username);
@@ -182,9 +188,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.showWeekPlanSubject = (subject) => {
         weekPlanSubjects.forEach(sub => {
-            document.getElementById(week-plan-${sub}).classList.add('hidden');
+            const element = document.getElementById(week-plan-${sub});
+            if (element) {
+                element.classList.add('hidden');
+            }
         });
-        document.getElementById(week-plan-${subject}).classList.remove('hidden');
+        const targetElement = document.getElementById(week-plan-${subject});
+        if (targetElement) {
+            targetElement.classList.remove('hidden');
+        }
     };
 
     // --- COMPLETED TARGET Section ---
@@ -197,6 +209,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderCompletedTargetTables(username) {
         Object.keys(completedTargetSubjects).forEach(subject => {
             const tbody = document.getElementById(completed-target-${subject}-body);
+            // Ensure tbody exists before trying to clear/append
+            if (!tbody) {
+                console.error(Error: tbody for completed-target-${subject} not found.);
+                return;
+            }
             tbody.innerHTML = ''; // Clear previous content
 
             const userData = loadUserData(username);
@@ -240,9 +257,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.showCompletedTargetSubject = (subject) => {
         Object.keys(completedTargetSubjects).forEach(sub => {
-            document.getElementById(completed-target-${sub}).classList.add('hidden');
+            const element = document.getElementById(completed-target-${sub});
+            if (element) {
+                element.classList.add('hidden');
+            }
         });
-        document.getElementById(completed-target-${subject}).classList.remove('hidden');
+        const targetElement = document.getElementById(completed-target-${subject});
+        if (targetElement) {
+            targetElement.classList.remove('hidden');
+        }
     };
 
     // --- WORK HOURS Section ---
@@ -252,6 +275,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderWorkHoursTable(username) {
         const tbody = document.getElementById('work-hours-body');
+        if (!tbody) {
+            console.error('Error: tbody for work-hours-body not found.');
+            return;
+        }
         tbody.innerHTML = ''; // Clear previous content
 
         const userData = loadUserData(username);
@@ -314,4 +341,4 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         showSection('login');
     }
-}); 
+});
