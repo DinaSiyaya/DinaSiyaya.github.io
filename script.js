@@ -22,11 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (difference < 0) {
             examCountdownElement.textContent = "විභාගය අවසන්!";
-            return;
-        }
-
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        examCountdownElement.textContent = ${days};
+            return;}
 
     // Initial countdown update
     updateCountdown();
